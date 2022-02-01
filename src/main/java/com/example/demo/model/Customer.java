@@ -3,6 +3,7 @@ package com.example.demo.model;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.time.LocalDate;
 
 @Entity
@@ -22,29 +23,30 @@ public class Customer {
     private String lastName;
     private LocalDate DateOfBirth; // TODO: older than 18
     private String dirversLicenseNumber;
-    private String email; // TODO: validated email String
-    private String cardNumber; // TODO: is this Reservation Number?
+    @Email
+    private String email;
+   // private String cardNumber; // TODO: is this Reservation Number?
 
     @Embedded
     private Address address;
 
 
-    public Customer(String firstName, String lastName, LocalDate dateOfBirth, String dirversLicenseNumber, String email, String cardNumber) {
+    public Customer(String firstName, String lastName, LocalDate dateOfBirth, String dirversLicenseNumber, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         DateOfBirth = dateOfBirth;
         this.dirversLicenseNumber = dirversLicenseNumber;
         this.email = email;
-        this.cardNumber = cardNumber;
+  //      this.cardNumber = cardNumber;
     }
 
-    public Customer(String firstName, String lastName, LocalDate dateOfBirth, String dirversLicenseNumber, String email, String cardNumber, Address address) {
+    public Customer(String firstName, String lastName, LocalDate dateOfBirth, String dirversLicenseNumber, String email, Address address) {
         this.firstName = firstName;
         this.lastName = lastName;
         DateOfBirth = dateOfBirth;
         this.dirversLicenseNumber = dirversLicenseNumber;
         this.email = email;
-        this.cardNumber = cardNumber;
+     //   this.cardNumber = cardNumber;
         this.address = address;
     }
 }

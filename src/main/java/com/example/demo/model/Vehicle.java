@@ -24,14 +24,14 @@ public class Vehicle {
     private String year;
     private String type;
     private String fuel;
-    private String capacity;
+    private int capacity;
     private Double price;
 
     @Embedded
     private Address branchAddress;
 
 
-    public Vehicle(String vinNumber, String plateNumber, String make, String model, String year, String type, String fuel, String capacity, Double price) {
+    public Vehicle(String vinNumber, String plateNumber, String make, String model, String year, String type, String fuel, int capacity, Double price) {
         this.vinNumber = vinNumber;
         this.plateNumber = plateNumber;
         this.make = make;
@@ -43,7 +43,7 @@ public class Vehicle {
         this.price = price;
     }
 
-    public Vehicle(String vinNumber, String plateNumber, String make, String model, String year, String type, String fuel, String capacity, Double price, Address branchAddress) {
+    public Vehicle(String vinNumber, String plateNumber, String make, String model, String year, String type, String fuel, int capacity, Double price, Address branchAddress) {
         this.vinNumber = vinNumber;
         this.plateNumber = plateNumber;
         this.make = make;
