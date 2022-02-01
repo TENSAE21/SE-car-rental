@@ -2,10 +2,7 @@ package com.example.demo.model;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -24,7 +21,11 @@ public class Reservation {
    private LocalDate endDate;
    private float totalDays;//TODO: can this be calculated from startDate and EndDate
    private Double price;
+
+   @OneToOne
+   @JoinColumn(name="customer_id", nullable = false, unique = true)
    private Customer customer;
+   @OneToOne
    private Vehicle vehicle;
 
    public Reservation(LocalDate startDate, LocalDate endDate, float totalDays, Double price, Customer customer, Vehicle vehicle) {

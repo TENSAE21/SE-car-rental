@@ -8,16 +8,13 @@ import javax.persistence.Embeddable;
 @Getter
 @ToString
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode
 public class Address implements ValueObject{
-
     private String state;
     private String city;
     private String street;
     private String zipCode;
-
-
-
 
 
 }
