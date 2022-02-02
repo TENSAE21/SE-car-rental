@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Vehicle;
+import com.example.demo.model.VehicleType;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +13,7 @@ public interface VehicleService {
       public List<Vehicle> listVehicles();
       public Vehicle updateVehicle(Long vehicleId, Vehicle vehicle);
       public void delete(Long vehicleId);
-
+      public List<Vehicle> findUnreservedByType(VehicleType vehicleType);
+      public void populateVehicleTable();
 
 }
