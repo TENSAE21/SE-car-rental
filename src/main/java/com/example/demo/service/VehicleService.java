@@ -12,6 +12,7 @@ public interface VehicleService {
       public Vehicle getVehicle(Long id);
       public List<Vehicle> listVehicles();
       public Vehicle updateVehicle(Long vehicleId, Vehicle vehicle);
+      public Boolean updateVehicleStatus(Long vehicleId, boolean isReserved);
       public void delete(Long vehicleId);
       public List<Vehicle> findUnreservedByType(VehicleType vehicleType);
       public void populateVehicleTable();

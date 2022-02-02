@@ -3,6 +3,7 @@ package com.example.demo.model;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 
 @Entity
 @Table(name = "Employees")
@@ -19,13 +20,15 @@ public class Employee {
     private Long employeeId;
     private String firstName;
     private String lastName;
+    @Email
     private String email;
     private String phoneNumber;
-    private String role; //TODO: ENUM??
+    @Column(nullable = false)
+    private Role role;
     private String userName;
     private String password;  //TODO: should be an encrypted version
 
-    public Employee(String firstName, String lastName, String email, String phoneNumber, String role, String userName, String password) {
+    public Employee(String firstName, String lastName, String email, String phoneNumber, Role role, String userName, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

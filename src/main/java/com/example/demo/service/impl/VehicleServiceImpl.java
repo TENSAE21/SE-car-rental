@@ -49,11 +49,32 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
-    public Vehicle updateVehicle(Long vehicleId, Vehicle vehicle) {
+    public Vehicle updateVehicle(Long vehicleId, Vehicle editedVehicle) {
         //Real
         //TODO: update Vehicle
+        return vehicleRepository.findById(vehicleId)
+                .map(vehicleToUpdate -> {
+                    vehicleToUpdate.setBranch(editedVehicle.getBranch());
+                    vehicleToUpdate.setIsReserved(editedVehicle.getIsReserved());
+                    vehicleToUpdate.setCapacity(editedVehicle.getCapacity());
+                    vehicleToUpdate.setFuel(editedVehicle.getFuel());
+                    vehicleToUpdate.setDailyPrice(editedVehicle.getDailyPrice());
+                    vehicleToUpdate.setMake(editedVehicle.getMake());
+                    vehicleToUpdate.setModel(editedVehicle.getModel());
+                    vehicleToUpdate.setType(editedVehicle.getType());
+                    vehicleToUpdate.setVinNumber(editedVehicle.getVinNumber());
+                    vehicleToUpdate.setPlateNumber(editedVehicle.getPlateNumber());
+                    vehicleToUpdate.setYear(editedVehicle.getYear());
+                    return vehicleRepository.save(vehicleToUpdate);
+                }).orElse(null);
         //Mock
-        return v2;
+       // return v2;
+    }
+
+    @Override
+    public Boolean updateVehicleStatus(Long vehicleId, boolean isReserved) {
+         return vehicleRepository.updateVehicleReservationStatus(isReserved, vehicleId);
+
     }
 
     @Override

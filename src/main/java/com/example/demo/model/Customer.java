@@ -10,7 +10,6 @@ import java.time.LocalDate;
 @Table(name = "Customers")
 @Getter
 @Setter
-@ToString
 @EqualsAndHashCode
 @NoArgsConstructor
 public class Customer {
@@ -22,14 +21,13 @@ public class Customer {
     private String firstName;
     private String lastName;
     @Column(nullable = false)
-    private LocalDate DateOfBirth; // TODO: older than 18
+    private LocalDate DateOfBirth; // TODO: older than 18?
     @Column(nullable = false)
     private String driversLicenseNumber;
     @Email
     private String email;
-    //private String cardNumber; // TODO: check credit card Number - length?
 
-    @OneToOne(mappedBy = "customer", fetch = FetchType.EAGER)
+    @OneToOne(mappedBy = "customer", fetch = FetchType.LAZY)
     Reservation reservation;
     @Embedded
     private Address address;
@@ -41,7 +39,6 @@ public class Customer {
         DateOfBirth = dateOfBirth;
         this.driversLicenseNumber = driversLicenseNumber;
         this.email = email;
-       //this.cardNumber = cardNumber;
     }
 
     public Customer(String firstName, String lastName, LocalDate dateOfBirth, String driversLicenseNumber, String email, Address address) {
@@ -50,7 +47,6 @@ public class Customer {
         DateOfBirth = dateOfBirth;
         this.driversLicenseNumber = driversLicenseNumber;
         this.email = email;
-       // this.cardNumber = cardNumber;
         this.address = address;
     }
 

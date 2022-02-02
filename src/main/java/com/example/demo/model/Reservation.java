@@ -27,7 +27,7 @@ public class Reservation {
    private String reservationNumber;
    private LocalDate startDate;
    private LocalDate endDate;
-   private long totalDays;//TODO: can this be calculated from startDate and EndDate
+   private long totalDays;
    private Double price;
    private ReservationStatus reservationStatus;
 
@@ -46,6 +46,7 @@ public class Reservation {
       this.price = calculatePrice(totalDays, vehicle.getDailyPrice());
       this.customer = customer;
       this.vehicle = vehicle;
+      this.reservationStatus= ReservationStatus.RESERVED;
    }
 
    public Reservation(LocalDate startDate, LocalDate endDate, Customer customer) {
@@ -53,6 +54,7 @@ public class Reservation {
       this.endDate = endDate;
       this.totalDays = DAYS.between(startDate, endDate);
       this.customer = customer;
+      this.reservationStatus= ReservationStatus.RESERVED;
    }
 
    public void setVehicle(Vehicle vehicle) {
