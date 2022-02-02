@@ -22,16 +22,17 @@ public class Vehicle {
     private String make;
     private String model;
     private String year;
-    private String type;
-    private String fuel;
+    private VehicleType type;
+    private FuelType fuel;
     private int capacity;
-    private Double price;
+    private Double dailyPrice;
+    private Boolean isReserved;
 
     @Embedded
-    private Address branchAddress;
+    private Branch branch;
 
 
-    public Vehicle(String vinNumber, String plateNumber, String make, String model, String year, String type, String fuel, int capacity, Double price) {
+    public Vehicle(String vinNumber, String plateNumber, String make, String model, String year, VehicleType type, FuelType fuel, int capacity, Double dailyPrice, boolean isReserved) {
         this.vinNumber = vinNumber;
         this.plateNumber = plateNumber;
         this.make = make;
@@ -40,10 +41,11 @@ public class Vehicle {
         this.type = type;
         this.fuel = fuel;
         this.capacity = capacity;
-        this.price = price;
+        this.dailyPrice = dailyPrice;
+        this.isReserved = isReserved;
     }
 
-    public Vehicle(String vinNumber, String plateNumber, String make, String model, String year, String type, String fuel, int capacity, Double price, Address branchAddress) {
+    public Vehicle(String vinNumber, String plateNumber, String make, String model, String year, VehicleType type, FuelType fuel, int capacity, Double dailyPrice, boolean isReserved, Branch branch) {
         this.vinNumber = vinNumber;
         this.plateNumber = plateNumber;
         this.make = make;
@@ -52,7 +54,8 @@ public class Vehicle {
         this.type = type;
         this.fuel = fuel;
         this.capacity = capacity;
-        this.price = price;
-        this.branchAddress = branchAddress;
+        this.dailyPrice = dailyPrice;
+        this.isReserved= isReserved;
+        this.branch = branch;
     }
 }
