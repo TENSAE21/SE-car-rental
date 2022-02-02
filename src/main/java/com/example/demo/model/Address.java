@@ -10,7 +10,7 @@ import javax.persistence.Embeddable;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-public class Address implements ValueObject{
+public class Address {
     private String state;
     private String city;
     private String street;

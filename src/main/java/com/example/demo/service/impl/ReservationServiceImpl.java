@@ -81,13 +81,27 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public Reservation updateReservation(Long reservationId, Reservation reservation)
-    {
+    public Reservation updateReservation(Long reservationId, Reservation editedReservation) {
         //Real
         //TODO:UPDATE QUERY
 
+        System.out.println(editedReservation);
+        return reservationRepository.findById(reservationId)
+                .map(resToUpdate -> {
+                    System.out.println(resToUpdate);
+                    resToUpdate.setStartDate(editedReservation.getStartDate());
+                    resToUpdate.setEndDate(editedReservation.getEndDate());
+                    System.out.println("------UPDATED-------");
+                    return reservationRepository.save(resToUpdate);
+                }).orElseGet(()-> {
+                        System.out.println("It's NULL");
+                        return null;});
+//                    return reservationRepository.save(editedReservation;
+//                });
+
         //Mock
-        return reservationRepository.getById(1l);
+//        return reservationRepository.getById(1l);
+
     }
 
     @Override
@@ -113,13 +127,26 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public List<Reservation> getTodaysReservations() {
-       //TODO:Fake data with today's date? //in some of reservation populate use today's date!
        return reservationRepository.findReservationsByStartDate(LocalDate.now());
     }
 
     @Override
     public void deleteReservation(Long id) {
         reservationRepository.deleteById(id);
+    }
+
+    @Override
+    public Reservation updateReservationStatus(ReservationStatus reservationStatus, Long id) {
+        if(reservationStatus.equals(ReservationStatus.COMPLETED)){
+            Reservation reservation = reservationRepository.getById(id);
+            Vehicle vehicleToClear = reservation.getVehicle();
+
+            vehicleToClear.setIsReserved(false);
+            vehicleService.updateVehicle(vehicleToClear.getVehicleId(), vehicleToClear);
+            return reservationRepository.updateReservationStatus(reservationStatus,id);
+        }
+        return reservationRepository.updateReservationStatus(reservationStatus, id);
+
     }
 
 
