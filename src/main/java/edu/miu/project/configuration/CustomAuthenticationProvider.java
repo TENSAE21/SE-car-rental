@@ -33,7 +33,9 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         Employee employee = employeeService.findEmployeeByUserName(userName);
 
         if (employee != null && userName.equals(employee.getUserName()) && passwordEncoder.matches(password, employee.getPassword())) {
-            return new UsernamePasswordAuthenticationToken(userName, password, new ArrayList<>());
+            List<GrantedAuthority> authorities = new ArrayList<>();
+            authorities.add(new SimpleGrantedAuthority(employee.getRole().name()));
+            return new UsernamePasswordAuthenticationToken(userName, password, authorities);
         } else return null;
     }
 
