@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,6 +29,8 @@ public class Customer {
     @Email
     private String email;
 
+
+    @JsonBackReference
     @OneToOne(mappedBy = "customer", fetch = FetchType.LAZY)
     Reservation reservation;
     @Embedded

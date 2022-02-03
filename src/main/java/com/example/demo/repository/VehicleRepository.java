@@ -20,5 +20,5 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
     @Modifying
     @Query("update Vehicle v set v.isReserved = ?1 where v.vehicleId = ?2")
     Boolean updateVehicleReservationStatus(boolean isReserved, long id);
-    //findStudentsByStudentNumberGreaterThan(long studentNumber);
+
 }

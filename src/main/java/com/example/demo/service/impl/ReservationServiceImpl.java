@@ -13,7 +13,7 @@ import java.time.Period;
 import java.util.List;
 import java.util.UUID;
 
-import static java.time.Period.between;
+
 
 @Service
 public class ReservationServiceImpl implements ReservationService {
@@ -53,8 +53,6 @@ public class ReservationServiceImpl implements ReservationService {
 //        return reservation1;
 
         //Real
-
-
         return reservationRepository.save(v);
 
     }
@@ -93,9 +91,7 @@ public class ReservationServiceImpl implements ReservationService {
                     resToUpdate.setEndDate(editedReservation.getEndDate());
                     System.out.println("------UPDATED-------");
                     return reservationRepository.save(resToUpdate);
-                }).orElseGet(()-> {
-                        System.out.println("It's NULL");
-                        return null;});
+                }).orElse(null);
 //                    return reservationRepository.save(editedReservation;
 //                });
 
@@ -137,16 +133,21 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public Reservation updateReservationStatus(ReservationStatus reservationStatus, Long id) {
+
         if(reservationStatus.equals(ReservationStatus.COMPLETED)){
-            Reservation reservation = reservationRepository.getById(id);
-            Vehicle vehicleToClear = reservation.getVehicle();
 
-            vehicleToClear.setIsReserved(false);
-            vehicleService.updateVehicle(vehicleToClear.getVehicleId(), vehicleToClear);
-            return reservationRepository.updateReservationStatus(reservationStatus,id);
+            return reservationRepository.findById(id)
+                    .map(reservation -> {
+                        reservation.getVehicle().setIsReserved(false);
+                        reservation.setReservationStatus(ReservationStatus.COMPLETED);
+                        return reservationRepository.save(reservation);
+                    }).orElse(null);
         }
-        return reservationRepository.updateReservationStatus(reservationStatus, id);
-
+        return reservationRepository.findById(id)
+                .map(reservation -> {
+                    reservation.setReservationStatus(ReservationStatus.COMPLETED);
+                    return reservationRepository.save(reservation);
+                }).orElse(null);
     }
 
 
