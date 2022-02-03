@@ -3,6 +3,7 @@ package com.example.demo.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.Duration;
@@ -27,7 +28,9 @@ public class Reservation {
 
    @Column(nullable = false, unique = true)
    private String reservationNumber;
+   @DateTimeFormat(pattern = "yyyy-MM-dd")
    private LocalDate startDate;
+   @DateTimeFormat(pattern = "yyyy-MM-dd")
    private LocalDate endDate;
    private long totalDays;
    private Double price;

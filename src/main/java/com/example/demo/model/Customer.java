@@ -2,10 +2,13 @@ package com.example.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.sun.istack.NotNull;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 
 @Entity
@@ -20,9 +23,16 @@ public class Customer {
     @Column(name = "customer_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long customerId;
+    @NotBlank
+    @NotNull
+    @Column(nullable = false)
     private String firstName;
+    @NotBlank
+    @NotNull
+    @Column(nullable = false)
     private String lastName;
     @Column(nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate DateOfBirth; // TODO: older than 18?
     @Column(nullable = false)
     private String driversLicenseNumber;
