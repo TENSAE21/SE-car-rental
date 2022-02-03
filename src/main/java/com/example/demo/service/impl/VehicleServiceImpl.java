@@ -74,7 +74,6 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     public Boolean updateVehicleStatus(Long vehicleId, boolean isReserved) {
          return vehicleRepository.updateVehicleReservationStatus(isReserved, vehicleId);
-
     }
 
     @Override

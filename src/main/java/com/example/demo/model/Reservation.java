@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -31,11 +33,12 @@ public class Reservation {
    private Double price;
    private ReservationStatus reservationStatus;
 
+   @JsonManagedReference
    @OneToOne(cascade = CascadeType.ALL)
    @JoinColumn(name="customer_id", nullable = false)
    private Customer customer;
 
-   @OneToOne
+   @OneToOne(cascade = CascadeType.MERGE)
    @JoinColumn(name="vehicle_id", nullable = false)
    private Vehicle vehicle;
 

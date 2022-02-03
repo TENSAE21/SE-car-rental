@@ -39,7 +39,6 @@ public class ReservationController {
     @PostMapping(value="/new/{vehicleType}")
     public Reservation makeReservation(@Valid @RequestBody Reservation reservation, @PathVariable VehicleType vehicleType){
         //TODO: how to let the user know if there are no available vehicles for the Type?
-        //put number available under vehicle/list by Category
         return reservationService.makeReservation(reservation, vehicleType);
     }
 
@@ -47,20 +46,13 @@ public class ReservationController {
     //update
     @PostMapping(value="/update/{reservationId}")
     public Reservation updateReservation (@Valid @RequestBody Reservation reservation, @PathVariable Long reservationId, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
-            System.out.println(bindingResult.getAllErrors());
-        }
-        else{
-            System.out.println("It's fine");
-        }
         return reservationService.updateReservation(reservationId, reservation);
     }
 
 
     //update-status
     @PostMapping(value="/update-status/{id}/{newReservationStatus}")
-    public Reservation updateReservation (@PathVariable Long id, @PathVariable ReservationStatus newReservationStatus){
-
+    public Reservation updateReservationStatus (@PathVariable Long id, @PathVariable ReservationStatus newReservationStatus){
         return reservationService.updateReservationStatus(newReservationStatus, id);
     }
 
