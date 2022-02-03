@@ -21,7 +21,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic().and()
+        http.httpBasic().and().csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/v2/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**", "/rental/api/reservation/new/**").permitAll()
                 .antMatchers("/rental/api/employee/add-employee", "/rental/api/employee/list", "/rental/api/employee/update/**", "/rental/api/employee/delete/**" ).hasAuthority(Role.ADMIN.name())

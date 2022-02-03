@@ -41,7 +41,7 @@ public class CarRentalApplication {
 
     private ApiInfo apiInfo() {
         return new ApiInfo("Car Rental REST API", "Backend API for car rental systemr ", "1.0", "Terms of service",
-                new Contact("Elilta Wondimu", "www.google.com", "eliltawondimu12@gmail.com"), "License of API", "API license URL", Collections.emptyList());
+                new Contact("Tinsae Ayalew", "www.google.com", "atinsae@miu.edu"), "License of API", "API license URL", Collections.emptyList());
     }
 
     private List<SecurityScheme> securitySchemes() {
