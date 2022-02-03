@@ -17,18 +17,19 @@ public class Vehicle {
     @Column(name = "vehicle_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long vehicleId;
+    @Column(nullable = false, unique = true)
     private String vinNumber;
+    @Column(nullable = false, unique = true)
     private String plateNumber;
     private String make;
     private String model;
     private String year;
+    @Column(nullable = false)
     private VehicleType type;
     private FuelType fuel;
     private int capacity;
     private Double dailyPrice;
     private Boolean isReserved;
-
-    @Embedded
     private Branch branch;
 
 

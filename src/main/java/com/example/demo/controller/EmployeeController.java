@@ -26,13 +26,13 @@ public class EmployeeController {
     //ADMIN ONLY
     @PostMapping(value= "/add-employee")
     public Employee addEmployee(@Valid @RequestBody Employee employee){
-
         return employeeService.addEmployee(employee);
     }
 
     //ADMIN ONLY
     @GetMapping(value="/list")
     public List<Employee> getAllEmployees(){
+        employeeService.populateEmployees();
         return employeeService.getEmployees();
     }
 
