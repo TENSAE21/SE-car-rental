@@ -1,4 +1,4 @@
-SE-car-rental - End to End system to manage car rental (dev- branch, rest api full implemented and security integrated)
+SE-car-rental - End to End system to manage car rental (dev_tensae branch -> rest api full implemented and security integrated)
 
 Run the program on your localhost and go to the http://localhost:8082/swagger-ui.html to check the rest-api implemented endpoints.
 Because LogIn is implemented make sure to allow add-employee privilages and use that as your entry.
